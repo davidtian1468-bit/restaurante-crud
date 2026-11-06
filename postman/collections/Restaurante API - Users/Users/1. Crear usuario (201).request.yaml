@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{base_url}}/api/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Ana Torres",
+      "email": "ana@example.com",
+      "password": "secreto123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 201", () => pm.response.to.have.status(201));
+      const j = pm.response.json();
+      pm.collectionVariables.set("user_id", j.id);
+      pm.test("No devuelve password", () => pm.expect(j.usuario).to.not.have.property("password"));
+    language: text/javascript
+order: 1000

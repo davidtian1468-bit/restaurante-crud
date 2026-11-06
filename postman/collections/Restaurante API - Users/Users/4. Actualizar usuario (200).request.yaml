@@ -1,0 +1,18 @@
+$kind: http-request
+description: "password es opcional: si se omite se conserva la actual."
+url: "{{base_url}}/api/users/{{user_id}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Ana T. Rojas",
+      "email": "ana.rojas@example.com"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test("Status 200", () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 4000

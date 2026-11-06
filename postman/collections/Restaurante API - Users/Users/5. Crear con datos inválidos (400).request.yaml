@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{base_url}}/api/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "",
+      "email": "no-es-correo"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("Status 400", () => pm.response.to.have.status(400));
+      pm.test("Trae campos", () => pm.expect(pm.response.json()).to.have.property("campos"));
+    language: text/javascript
+order: 5000

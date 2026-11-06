@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar carta | La especialidad de la Carne</title>
+    <link rel="icon" type="image/jpeg" href="imagenes/logo.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar fixed-top bg-black navbar-dark py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="fa-solid fa-fire text-gold me-2 fs-3"></i>
+                <span class="brand-name">La especialidad de la carne</span>
+            </a>
+            <a href="index.html" class="btn btn-outline-gold text-uppercase fw-bold">
+                <i class="fa-solid fa-arrow-left me-2"></i>Volver a la web
+            </a>
+        </div>
+    </nav>
+
+    <section class="admin-section bg-black text-white">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <span class="text-gold text-uppercase tracking-widest fw-bold">Panel del restaurante</span>
+                <h2 class="display-4 text-serif mt-2">ADMINISTRAR CARTA</h2>
+                <div class="separator mx-auto bg-gold my-3"></div>
+            </div>
+
+            <div id="mensaje" class="alert d-none" role="alert"></div>
+
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card bg-darker border-gold text-white p-4">
+                        <h3 id="tituloFormulario" class="text-serif text-gold mb-3">Nuevo plato</h3>
+                        <form id="formPlato">
+                            <input type="hidden" id="idPlato">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" id="nombre" class="form-control input-dark" maxlength="100" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <select id="categoria" class="form-select input-dark" required>
+                                    <option value="Carnes">Carnes</option>
+                                    <option value="Entradas">Entradas</option>
+                                    <option value="Postres">Postres</option>
+                                    <option value="Licores">Licores</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <textarea id="descripcion" class="form-control input-dark" rows="3" maxlength="200" required></textarea>
+                            </div>
+                            <div class="row g-2 mb-4">
+                                <div class="col-6">
+                                    <label for="precio" class="form-label">Precio ($)</label>
+                                    <input type="number" id="precio" class="form-control input-dark" min="0" step="0.01" required>
+                                </div>
+                                <div class="col-6">
+                                    <label for="stock" class="form-label">Stock</label>
+                                    <input type="number" id="stock" class="form-control input-dark" min="0" step="1" required>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-gold fw-bold flex-grow-1">
+                                    <i class="fa-solid fa-floppy-disk me-2"></i>Guardar
+                                </button>
+                                <button type="button" id="btnCancelar" class="btn btn-outline-gold">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Plato</th>
+                                    <th>Categoría</th>
+                                    <th class="text-end">Precio</th>
+                                    <th class="text-end">Stock</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaPlatos"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
